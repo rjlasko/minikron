@@ -1,0 +1,11 @@
+version: '2.1'
+
+services:
+
+  minikron:
+    build: .
+    image: rjlasko/minikron:0.1
+    command: /usr/sbin/crond -f
+    restart: unless-stopped
+    volumes:
+      - "${TZ}:/etc/localtime:ro"
