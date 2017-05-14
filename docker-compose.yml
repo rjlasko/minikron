@@ -8,3 +8,4 @@ services:
     restart: unless-stopped
     volumes:
       - "${TZ}:/etc/localtime:ro"
+      - "${MSMTPRC}:/etc/msmtprc:ro"

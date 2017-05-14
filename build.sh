@@ -2,7 +2,12 @@
 set -e
 
 # add permanent applications & utilities
-apk add --update bash
+apk add --update bash msmtp
+
+# replace sendmail with msmtp
+SENDMAIL_PATH="$(which sendmail)"
+unlink "$SENDMAIL_PATH"
+ln -s "$(which msmtp)" "$SENDMAIL_PATH"
 
 # add packages only needed for installation
 apk add --update curl
