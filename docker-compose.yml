@@ -7,5 +7,4 @@ services:
     image: rjlasko/minikron:0.1
     restart: unless-stopped
     volumes:
-      - "${TZ}:/etc/localtime:ro"
       - "${MSMTPRC}:/etc/msmtprc:ro"
