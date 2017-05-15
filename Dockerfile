@@ -1,6 +1,8 @@
 FROM alpine:latest
 MAINTAINER rjlasko
 
+ENV MAILTO ""
+
 COPY build.sh /tmp/
 RUN /bin/sh /tmp/build.sh && \
 	rm -rf /tmp/*
