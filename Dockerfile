@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM rjlasko/alpine-s6:latest
 MAINTAINER rjlasko
 
 ENV MAILTO ""
@@ -10,5 +10,4 @@ RUN /bin/sh /tmp/build.sh && \
 
 COPY start.sh /usr/bin/
 
-ENTRYPOINT ["/bin/sh"]
-CMD ["/usr/bin/start.sh"]
+CMD ["/bin/sh", "/usr/bin/start.sh"]
