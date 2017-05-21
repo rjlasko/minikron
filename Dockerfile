@@ -1,8 +1,8 @@
-FROM rjlasko/alpine-s6:latest
+FROM rjlasko/alpine-s6:1.0
 MAINTAINER rjlasko
 
-ENV MAILTO ""
-ENV USEDEFAULTCRONTAB ""
+ENV CRONTAB_MAILTO ""
+ENV CRONTAB_USEDEFAULT ""
 
 COPY fsroot /
 RUN /bin/sh /tmp/build.sh && \

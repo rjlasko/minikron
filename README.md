@@ -19,8 +19,8 @@ services:
     containername: kron
     restart: unless-stopped
     environment:
-      - MAILTO=your@email.here
-      - USEDEFAULTCRONTAB=true
+      - CRONTAB_MAILTO=your@email.here
+      - CRONTAB_USEDEFAULT=true
     volumes:
       - "${MSMTPRC}:/etc/msmtprc:ro"
       - "${CRONTAB}:/etc/periodic/cron.tab:ro"
@@ -36,8 +36,8 @@ Slightly more work, but just as functional is to use the CLI interface to config
 docker run -d \
 	--name kron \
 	--restart=always \
-	--env USEDEFAULTCRONTAB=true \
-	--env MAILTO=your@email.here \
+	--env CRONTAB_MAILTO=your@email.here \
+	--env CRONTAB_USEDEFAULT=true \
 	-v "${MSMTPRC}":/etc/msmtprc:ro \
 	-v "${CRONTAB}":/etc/periodic/cron.tab:ro \
 	-v "${HOURLY_01}":/etc/periodic/hourly/01.sh:ro \
@@ -57,7 +57,7 @@ If the following crontab standard format file is found during container start ti
 ```
 
 ### Running jobs using the default crontab
-On container start, the environment variable `USEDEFAULTCRONTAB` is evaluated.  If it is equal (case-insensitive) to `TRUE`, then the default crontab is not cleared.  In this case, placing executable files in a directory structure corresponding to pre-defined cron-jobs calling the `run-parts` executable on the given directories occurring with the stated periodicity.
+On container start, the environment variable `CRONTAB_USEDEFAULT` is evaluated.  If it is equal (case-insensitive) to `TRUE`, then the default crontab is not cleared.  In this case, placing executable files in a directory structure corresponding to pre-defined cron-jobs calling the `run-parts` executable on the given directories occurring with the stated periodicity.
 ```
 /etc/periodic/15min
 /etc/periodic/hourly
@@ -67,6 +67,8 @@ On container start, the environment variable `USEDEFAULTCRONTAB` is evaluated.  
 ```
 
 ## MSMTP & Email
+A primary goal of this project is to support `crond`'s ability to send emails to the email address defined by the `MAILTO` variable in the `crontab` definition.  The `CRONTAB_MAILTO` environment variable is provided to specify the destination of any `cron` generated emails.
+
 The Alpine Linux default email program `sendmail` has been replaced by `msmtp` due to its ease of use, and active development.  This will allow us to leverage all of its functionality, mostly through the specification of its standard configuration file, to be located at:
 ```
 /etc/msmtprc
