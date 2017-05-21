@@ -1,18 +1,13 @@
 #!/bin/sh
 set -e
 
-# add permanent applications & utilities
-apk add --update --no-cache bash msmtp
 
 # replace sendmail with msmtp
-SENDMAIL_PATH="$(which sendmail)"
-unlink "$SENDMAIL_PATH"
-ln -s "$(which msmtp)" "$SENDMAIL_PATH"
-
-# add packages only needed for installation
-apk add --update --no-cache curl
+apk add --update --no-cache msmtp
+ln -s -f "$(which msmtp)" "$(which sendmail)"
 
 # install cronic to cleanup cron outputs for mailing errors
+apk add --update --no-cache bash curl
 # requires 'bash'
 curl -L http://habilis.net/cronic/cronic -o /usr/bin/cronic
 chmod a=rx /usr/bin/cronic
