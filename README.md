@@ -9,7 +9,7 @@ This is an image based on Alpine Linux that provides a minimal construct to run 
 # How to use this image
 
 ## docker-compose
-The simplest way to use this image is to use a docker-compose.yml file.  Here is a fully configured example.
+The simplest way to use this image is to use a `docker-compose.yml` file.  Here is a fully configured example.
 
 ```
 version: '2.1'
@@ -31,7 +31,7 @@ services:
 ```
 
 ## docker
-Slightly more work, but just as functional is to use the CLI interface to configure and build your own container from just the Dockerfile.
+Slightly more work, but just as functional is to use the CLI interface to configure and build your own container from just the `Dockerfile`.
 ```
 docker run -d \
 	--name kron \

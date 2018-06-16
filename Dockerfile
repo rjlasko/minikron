@@ -1,4 +1,4 @@
-FROM rjlasko/alpine-s6:1.1
+FROM rjlasko/alpine-s6:1.2
 MAINTAINER rjlasko
 
 ENV CRONTAB_MAILTO ""
