@@ -1,5 +1,5 @@
 #!/usr/bin/with-contenv sh
-set -e
+set -euo pipefail
 
 echo "CRONTAB_USEDEFAULT=$CRONTAB_USEDEFAULT" 1>&2
 if ! $( echo "$CRONTAB_USEDEFAULT" | grep -qi '^TRUE$' ) ; then

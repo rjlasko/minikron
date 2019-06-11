@@ -1,5 +1,5 @@
 #!/bin/sh
-set -ex
+set -xeu
 
 BUILD_DEPS="curl"
 RUN_DEPS="bash msmtp"
